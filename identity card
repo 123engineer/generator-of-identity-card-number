@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*stdlib.h是C語言中標準函數庫的頭文件，聲明了數值與字符串轉換函數, 偽隨機數生成函數, 動態內存分配函數, 進程控制函數等公共函數。*/
+#include <time.h>
+/*time.h是C語言中標準函式庫中取得時間與日期、對時間與日期資料操作及格式化的標頭檔。*/
+
+int main() {
+    int sex,a,b,c,d,e,f,g,check,sum,city,remain;
+    char taiwancity;
+    /*一個 char變數 就是儲存 ASCII 裡的一個整數編號(包含半形字)*/
+    srand(time(NULL));
+    /*srand()（定義在stdlib.h函式庫裡），這個函式可以改變亂數種子
+    輸入time()（定義在time.h函式庫裡)這個函數當作一個種子，會讓變數每次都不一樣，不然只有srand()出來的變數不會換，這個函式也需要輸入一個參數
+    輸入NULL意思是不需要修改*/
+    printf("boy:1 girl:2\n");
+    scanf("%1d", &sex);
+    /*身分證字號第一個數字是判別男女*/
+    printf("Enter county: (Capitalized)\n");
+    printf("A Taipei, B Taichung, C Keelung, D Tainan, E Kaohsiung, F New Taipei, G Yilan,\n");
+    printf("H Taoyuan, I Chiayi, J Hsinchu county, K Miaoli, L Taichung county, M Nantou, N Changhua,\n");
+    printf("O Hsinchu, P Yunlin, Q Chiayi county, R Tainan county, S Kaohsiung county, T Pingtung, U Hualien,\n");
+    printf("V Taitung, W Kinmen, X Penghu, Y Yangmingshan Administrative Bureau, Z Lienchiang\n");
+    fflush(stdin);
+    /*在printf()後使用fflush(stdin)的作用是立刻將要輸入的內容輸入*/
+    scanf("%1c", &taiwancity);
+    /*英文字母為判別戶籍地區*/
+    switch(taiwancity)
+    /*switch的用意是轉換括號內的運算式，switch 的括號，當中置放要取出數值的變數或運算式，取得數值之後，
+    會與 case 設定的數字或字元比對，如果符合就執行以下的陳述句，直到遇到 break 後離開 switch 區塊。*/
+ {
+      case 'A' : city = 10;
+     break;
+      case 'B' : city = 11;
+      break;
+     case 'C' : city = 12;
+     break;
+     case 'D' : city = 13;
+     break;
+     case 'E' : city = 14;
+     break;
+     case 'F' : city = 15;
+     break;
+     case 'G' : city = 16;
+     break;
+     case 'H' : city = 17;
+     break;
+     case 'I' : city = 34;
+     break;
+     case 'J' : city = 18;
+     break;
+     case 'k' : city = 19;
+     break;
+     case 'L' : city = 20;
+     break;
+     case 'M' : city = 21;
+     break;
+     case 'N' : city = 22;
+     break;
+     case 'O' : city = 35;
+     break;
+     case 'P' : city = 23;
+     break;
+     case 'Q' : city = 24;
+     break;
+     case 'R' : city = 25;
+     break;
+     case 'S' : city = 26;
+     break;
+     case 'T' : city = 27;
+     break;
+     case 'U' : city = 28;
+     break;
+     case 'V' : city = 29;
+     break;
+     case 'W' : city = 32;
+     break;
+     case 'X' : city = 30;
+     break;
+     case 'Y' : city = 31;
+     break;
+     case 'Z' : city = 33;
+     break;
+  }
+    /*將英文字母轉為數字，因為後面產生身分證的號碼的最後一位是check digit，運算時要使用*/
+    a=rand () % 10;
+    b=rand () % 10;
+    c=rand () % 10;
+    d=rand () % 10;
+    e=rand () % 10;
+    f=rand () % 10;
+    g=rand () % 10;
+    /*rand是產生變數，因為要產生0-9的變數所以要放%10*/
+    sum=sex*8+a*7+b*6+c*5+d*4+e*3+f*2+g+(city/10)+(city%10)*9;
+    remain=sum%10;
+    check=10-remain;
+    printf("%c%d%d%d%d%d%d%d%d%1d", taiwancity, sex, a, b, c, d, e, f, g, check);
+    /*身份證字號產生規則為英文字母轉為10-33的數字，將十位數字*1，個位數字*9，然後將身分證字號的第1-8位數字依序乘8，乘7.....乘1，之後全部相加
+    再除10取餘數，最後用10剪掉所得的餘數即為最後一位check digit*/
+    return 0;
+}
